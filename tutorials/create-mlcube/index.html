@@ -336,56 +336,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#step-1-setup" class="md-nav__link">
-    Step 1: SETUP
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-define-a-container-for-your-model-with-a-dockerfile" class="md-nav__link">
-    Step 2: DEFINE A CONTAINER FOR YOUR MODEL with a DOCKERFILE
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-build-push-your-docker-image-to-a-public-repo" class="md-nav__link">
-    Step 3: BUILD &amp; PUSH YOUR DOCKER IMAGE TO A PUBLIC REPO
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-4-get-mlcube-templates" class="md-nav__link">
-    Step 4: GET MLCUBE TEMPLATES
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-4-use-template-files-to-set-up-mlcube" class="md-nav__link">
-    Step 4: USE TEMPLATE FILES TO SET UP MLCUBE
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-4-test-your-mlcube" class="md-nav__link">
-    Step 4: TEST YOUR MLCUBE
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -398,17 +348,17 @@
                 
                 
                 <h1 id="tutorial-create-an-mlcube">Tutorial Create an MLCube<a class="headerlink" href="#tutorial-create-an-mlcube" title="Permanent link">&para;</a></h1>
-<div style="text-align:center"><span style="color:black; font-family:Georgia; font-size:2em;">Interested in getting started with MLCube? Follow the instructions in this tutorial, or watch the video below.</span></div>
-<p><a href="https://www.youtube.com/embed/hQRBLW6giRc"><img alt="Watch the video" src="http://img.youtube.com/vi/hQRBLW6giRc/0.jpg" /></a>.  </p>
-<h2 id="step-1-setup">Step 1: SETUP<a class="headerlink" href="#step-1-setup" title="Permanent link">&para;</a></h2>
-<p>Create a python environment and get MLCube.
+<div style="text-align:center"><span style="color:black; font-family:Georgia; font-size:2em;">Interested in getting started with MLCube? Follow the instructions in this tutorial.    
+## Step 1: SETUP   
+Create a python environment and get MLCube.
 <div class="highlight"><pre><span></span><code>virtualenv -p python3 ./env &amp;&amp; source ./env/bin/activate
 pip install mlcube mlcube-docker cookiecutter 
-</code></pre></div></p>
-<h2 id="step-2-define-a-container-for-your-model-with-a-dockerfile">Step 2: DEFINE A CONTAINER FOR YOUR MODEL with a DOCKERFILE<a class="headerlink" href="#step-2-define-a-container-for-your-model-with-a-dockerfile" title="Permanent link">&para;</a></h2>
-<p>Let's download the 'matmult' example to illustrate how to make an MLCube. This is a simple matrix multiply written in python and tensorflow. 
-When you create an MLCube for your own model you will use your own code, data and dockerfile.</p>
-<p>You can clone the mlcube examples from GtiHub:
+</code></pre></div>
+## Step 2: DEFINE A CONTAINER FOR YOUR MODEL with a DOCKERFILE  
+Let's download the 'matmult' example to illustrate how to make an MLCube. This is a simple matrix multiply written in python and tensorflow. 
+When you create an MLCube for your own model you will use your own code, data and dockerfile.
+
+You can clone the mlcube examples from GtiHub:
 <div class="highlight"><pre><span></span><code>cd $HOME
 git clone https://github.com/mlcommons/mlcube_examples
 cd mlcube_examples
@@ -418,9 +368,9 @@ cd my_mlcube/build
 # copy the matmul.py,Dockerfile and requirements.txt to your my_mlcube/build directory
 cp $HOME/mlcube_examples/matmul/build/*  . 
 </code></pre></div>
-You will need a docker image to create an MLCube.  We will use the Dockerfile for 'matmul' to create a docker container image: <br />
-<sub><sup><span style="color:blue">Note: the last line of the Dockerfile must be  <br />
-"ENTRYPOINT ["python3", "/workspace/your_mlcube_name.py"]" as shown below.</span></sup></sub> </p>
+You will need a docker image to create an MLCube.  We will use the Dockerfile for 'matmul' to create a docker container image:   
+<sub><sup><span style="color:blue">Note: the last line of the Dockerfile must be    
+"ENTRYPOINT ["python3", "/workspace/your_mlcube_name.py"]" as shown below.</span></sup></sub> 
 <pre><code> 
 # Sample Dockerfile for matmul (Matrix Multiply)
 FROM ubuntu:18.04
@@ -446,20 +396,20 @@ COPY matmul.py /workspace/matmul.py
 
 <strong>ENTRYPOINT ["python3", "/workspace/matmul.py"]</strong>
 </code></pre>
-<h2 id="step-3-build-push-your-docker-image-to-a-public-repo">Step 3: BUILD &amp; PUSH YOUR DOCKER IMAGE TO A PUBLIC REPO<a class="headerlink" href="#step-3-build-push-your-docker-image-to-a-public-repo" title="Permanent link">&para;</a></h2>
+## Step 3: BUILD & PUSH YOUR DOCKER IMAGE TO A PUBLIC REPO 
 <div class="highlight"><pre><span></span><code># After you have created a repository on https://hub.docker.com or another public repository 
 docker build --tag matmul:1.0 .
 docker push yourusername/matmul 
 </code></pre></div>
-<h2 id="step-4-get-mlcube-templates">Step 4: GET MLCUBE TEMPLATES<a class="headerlink" href="#step-4-get-mlcube-templates" title="Permanent link">&para;</a></h2>
-<p>Create templates for your project.  Answer two quesitons - MLCube name and authors.
+## Step 4: GET MLCUBE TEMPLATES
+Create templates for your project.  Answer two quesitons - MLCube name and authors.
 <div class="highlight"><pre><span></span><code># Previously we could Clone MLCube Templates
 #git clone https://github.com/sergey-serebryakov/mlbox/tree/feature/mlbox-template/examples/template 
 
 cookiecutter https://github.com/mlperf/mlcube_cookiecutter.git
-</code></pre></div></p>
-<h2 id="step-4-use-template-files-to-set-up-mlcube">Step 4: USE TEMPLATE FILES TO SET UP MLCUBE<a class="headerlink" href="#step-4-use-template-files-to-set-up-mlcube" title="Permanent link">&para;</a></h2>
-<p><div class="highlight"><pre><span></span><code>cd ./platforms
+</code></pre></div>
+## Step 4: USE TEMPLATE FILES TO SET UP MLCUBE
+<div class="highlight"><pre><span></span><code>cd ./platforms
 # Edit the docker.yaml file specifiing the platform name you want (docker or kubernetes or ssh)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code># Platform configuration files define where and how runners run MLBoxes. This configuration file defines a Docker
@@ -477,8 +427,8 @@ platform:
   version: &quot;&gt;=18.01&quot;
 container:
   # image: &quot;mlperf/mlbox_mnist:0.0.2&quot;
-</code></pre></div></p>
-<h2 id="step-4-test-your-mlcube">Step 4: TEST YOUR MLCUBE<a class="headerlink" href="#step-4-test-your-mlcube" title="Permanent link">&para;</a></h2>
+</code></pre></div>
+## Step 4: TEST YOUR MLCUBE
                 
               
               
