@@ -11,7 +11,7 @@
       
       
       
-        <meta name="author" content="<MLPerf.org> mlperf@googlegroups.com">
+        <meta name="author" content="<MLPerf.org> mlcommons@googlegroups.com">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.6">
@@ -617,7 +617,7 @@ revisit the Docker platform config.</p>
   <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;docker&quot;</span>
   <span class="nt">version</span><span class="p">:</span> <span class="s">&quot;&gt;=18.01&quot;</span>
 <span class="nt">container</span><span class="p">:</span>
-  <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;mlperf/mlcube:mnist&quot;</span>
+  <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;mlcommons/mlcube:mnist&quot;</span>
 </code></pre></div>
 <p>With these two config files, the runner then constructs the following Kubernetes Job manifest. </p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">batch/v1</span>
@@ -630,7 +630,7 @@ revisit the Docker platform config.</p>
     <span class="nt">spec</span><span class="p">:</span>
       <span class="nt">containers</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mlcube-container</span>
-        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mlperf/mlcube:mnist</span>
+        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mlcommons/mlcube:mnist</span>
         <span class="nt">args</span><span class="p">:</span>
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">--data_dir=/mnt/mlcube/mlcube-input/workspace/data</span>
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">--model_dir=/mnt/mlcube/mlcube-output/workspace/model</span>
